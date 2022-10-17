@@ -2,6 +2,8 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Buttons extends JPanel{
 
@@ -18,9 +20,18 @@ public class Buttons extends JPanel{
             JButton btn = new JButton(new ActionsHandler(i+"", screen));
             this.add(btn);
         }
+        JButton btn = new JButton(new ActionsHandler("0", screen));
+        this.add(btn);
     }
 
     public void createActionButton(){
+        JButton del = new JButton("DEL");
+        del.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                screen.setText("");
+            }
+        });
         JButton sum = new JButton(new CalculationHandler("+", screen));
         JButton rest = new JButton(new CalculationHandler("-", screen));
         JButton multiply = new JButton(new CalculationHandler("*", screen));
@@ -30,5 +41,6 @@ public class Buttons extends JPanel{
         this.add(sum);
         this.add(rest);    this.add(multiply);    this.add(divide);
         this.add(result);
+        this.add(del);
     }
 }
